@@ -110,7 +110,6 @@ class CandeoModmote(CustomDevice):
             self.debug("CandeoModmote: bind called")
             if self.endpoint.endpoint_id == 1:
                 self.debug("CandeoModmote: casting tuya spell")
-                # await self.spell_attribute_reads()
                 tuya_spell = [4, 0, 1, 5, 7, 0xFFFE]
                 basic_cluster = self.endpoint.device.endpoints[1].in_clusters[
                     Basic.cluster_id
