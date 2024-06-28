@@ -201,7 +201,7 @@ class CandeoModmote(CustomDevice):
             *,
             dst_addressing: AddressingMode | None = None,
         ) -> None:
-            """overwrite handle_message to surpress cluster_command events"""
+            """overwrite handle_message to suppress cluster_command events"""
             self.debug(
                 "CandeoModmote: Received command 0x%02X (TSN %d): %s",
                 hdr.command_id,
