@@ -124,7 +124,7 @@ class CandeoCZBSR5BRSceneSwitchRemote(CustomDevice):
         def handle_cluster_request(
             self,
             hdr: foundation.ZCLHeader,
-            args: tuple[CandeoSceneSwitchRemoteCommand],
+            args: tuple[CandeoCZBSR5BRSSceneSwitchRemoteCommand],
             *,
             dst_addressing: Optional[
                 Union[t.Addressing.Group, t.Addressing.IEEE, t.Addressing.NWK]
