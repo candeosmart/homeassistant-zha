@@ -92,6 +92,11 @@ class CandeoCZBSR5BRSceneSwitchRemote(CustomDevice):
                 is_manufacturer_specific=True,
             )
 
+        async def apply_custom_configuration(self, *args, **kwargs):
+            """apply custom configuration to bind cluster."""
+            self.debug("CandeoCZBSR5BRSceneSwitchRemote: apply_custom_configuration called")
+            await self.bind()
+
         def __init__(
             self, 
             *args, 
@@ -132,13 +137,13 @@ class CandeoCZBSR5BRSceneSwitchRemote(CustomDevice):
         ):
             """overwrite handle_cluster_request to custom process this cluster."""
             self.debug("CandeoCZBSR5BRSceneSwitchRemote: handle_cluster_request called")
-            if hdr.tsn == self.last_tsn:
-                self.debug("CandeoCZBSR5BRSceneSwitchRemote: ignoring duplicate frame from device")
-                return
-            self.last_tsn = hdr.tsn
             if not hdr.frame_control.disable_default_response:
                 self.debug("CandeoCZBSR5BRSceneSwitchRemote: sending default response")
                 self.send_default_rsp(hdr, status=foundation.Status.SUCCESS)
+            if hdr.tsn == self.last_tsn:
+                self.debug("CandeoCZBSR5BRSceneSwitchRemote: ignoring duplicate frame from device")
+                return
+            self.last_tsn = hdr.tsn            
             if hdr.command_id == self.ServerCommandDefs.candeo_scene_switch_remote.id:
                 if args.field_1 is None or args.field_2 is None or args.field_3 is None or args.field_4 is None:
                     return
