@@ -13,7 +13,7 @@ from zigpy.zcl.foundation import DataTypeId, ZCLAttributeDef
 
 from zhaquirks import LocalDataCluster
 
-from candeo import CANDEO
+CANDEO = "Candeo"
 
 class CandeoSwitchedFusedSpurElectricalMeasurement(CustomCluster, ElectricalMeasurement):
     """Sets divisor & multiplier attributes missing on the device."""
